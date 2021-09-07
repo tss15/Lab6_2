@@ -69,7 +69,7 @@ public class FileParser {
             lw.setId(newID);
         }
         //set Name
-        lw.setName((String)jsonObject.get("name"));
+        lw.setName((String)jsonObject.get("Name"));
         System.out.println(lw.getName());
 
         // set Coordinates
