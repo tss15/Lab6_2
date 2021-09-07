@@ -11,7 +11,7 @@ public class ServerController {
 
     private final int port;
 
-    public ServerController(String p) {
+    public ServerController(Integer p) {
         this.port = Integer.parseInt(p);
     }
 

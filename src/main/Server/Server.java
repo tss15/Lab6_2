@@ -10,7 +10,7 @@ public class Server {
     public static void main(String[] args) {
         try {
             String fileName = args[0];
-            String port = args[1];
+            Integer port = Integer.valueOf(args[1]);
             Logging.log(Level.WARNING, "Port must be int number! Please notice about it!");
             CollectionManager.setFileName(fileName);
             CollectionManager.readInputFromJsonFile();
