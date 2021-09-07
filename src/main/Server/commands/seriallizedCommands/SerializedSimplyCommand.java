@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class SerializedSimplyCommand implements Serializable {
 
     private final Command command;
-    private static final long serialVersionUID = 1234567L;
+    private static final long serialVersionUID = 1502L;
 
 
     public SerializedSimplyCommand(Command command) {

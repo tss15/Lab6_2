@@ -8,7 +8,7 @@ public class SerializedObjectCommand implements Serializable {
 
     private final Command command;
     private final Object object;
-    private static final long serialVersionUID = 1234567L;
+    private static final long serialVersionUID = 1502L;
 
     public SerializedObjectCommand(Command command, Object object){
         this.command = command;

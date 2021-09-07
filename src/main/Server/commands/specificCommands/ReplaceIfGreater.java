@@ -11,7 +11,7 @@ import java.net.DatagramSocket;
 import java.util.logging.Level;
 
 public class ReplaceIfGreater extends Command implements Serializable {
-    private static final long serialVersionUID = 1234567L;
+    private static final long serialVersionUID = 1502L;
 
     @Override
     public void execute(Object o, DatagramSocket datagramSocket, DatagramPacket datagramPacket) throws IOException {
