@@ -1,0 +1,25 @@
+[{
+  "Name" : "First",
+  "id" : "45",
+  "coordinates": {
+    "x": "12",
+    "y": "14"
+  },
+  "creationDate": "2021-09-09",
+  "minpoint" : "1",
+  "difficulty" : "HARD",
+  "author" : {
+    "name": "bla",
+    "weight" : "2",
+    "eye color" : "BROWN",
+    "hair color" : "BROWN",
+    "nationality" : "GERMANY",
+    "location" : {
+      "x": "22",
+      "y": "22",
+      "name": "ccc"
+    }
+
+  }
+
+}]
