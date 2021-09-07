@@ -3,6 +3,7 @@ package data;
 import java.io.Serializable;
 
 public class Person implements Serializable {
+    private static final long serialVersionUID = 1502L;
     private String name;
     private Double weight;
     private Color eyeColor;

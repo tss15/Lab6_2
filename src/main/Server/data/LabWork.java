@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 public class LabWork implements Serializable {
+    private static final long serialVersionUID = 1502L;
     private long id = 0;
     private String name = "";
     private Coordinates coordinates;
