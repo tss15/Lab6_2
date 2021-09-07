@@ -1,2 +1,4 @@
-сен 07, 2021 1:25:16 AM utilities.Logging log
-INFO: Invalid fileName and port
+сен 07, 2021 3:02:10 AM utilities.Logging log
+WARNING: Port must be int number! Please notice about it!
+сен 07, 2021 3:02:10 AM utilities.Logging log
+INFO: Server has started listening on port 2222

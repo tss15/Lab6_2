@@ -18,8 +18,8 @@ public class FileParser {
 
         try (FileReader reader = new FileReader(InputFileName)) {
             Object obj = jsonParser.parse(reader);
-            JSONArray personList = (JSONArray) obj;
-            collectionInput = saveIntoCollection(personList);
+            JSONArray labWorkList = (JSONArray) obj;
+            collectionInput = saveIntoCollection(labWorkList);
 
         } catch (ParseException | IOException e) {
             e.printStackTrace();
@@ -59,7 +59,8 @@ public class FileParser {
     private LabWork convertJsonObjIntoLabWork(JSONObject jsonObject) throws java.text.ParseException {
         LabWork lw = new LabWork();
         // set ID
-        Long newID = (Long)jsonObject.get("id");
+        Long newID = Long.parseLong(String.valueOf(jsonObject.get("id")));
+        System.out.println(newID);
         if(CollectionManager.IDChecker.contains(newID)){
             System.out.println("ID is duplicate, please insert valid input!");
         }
@@ -69,27 +70,28 @@ public class FileParser {
         }
         //set Name
         lw.setName((String)jsonObject.get("name"));
+        System.out.println(lw.getName());
 
         // set Coordinates
         JSONObject coordinatesObj = (JSONObject) jsonObject.get("coordinates");
-        lw.setCoordinates(new Coordinates(Math.toIntExact((Long) coordinatesObj.get("x")), (Double)coordinatesObj.get("y")));
+        lw.setCoordinates(new Coordinates(Math.toIntExact(Long.parseLong(String.valueOf(coordinatesObj.get("x")))), Double.parseDouble(String.valueOf(coordinatesObj.get("y")))));
 
         /*
             parse String to LocalDateTime
         */
 
-        // date in String
-        String dateString = (String)jsonObject.get("creationDate");
-
-        //build formatter
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-        //Parse String to LocalDateTime
-        LocalDateTime dateTime = LocalDateTime.parse(dateString,formatter);
-        lw.setCreationDate(dateTime);
-        //System.out.println(p.getCreationDate());
+//        // date in String
+//        String dateString = (String)jsonObject.get("creationDate");
+//
+//        //build formatter
+//        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+//        //Parse String to LocalDateTime
+//        LocalDateTime dateTime = LocalDateTime.parse(dateString,formatter);
+//        lw.setCreationDate(dateTime);
+//        //System.out.println(p.getCreationDate());
 
         // set minimalPoint
-        lw.setMinimalPoint((Long) jsonObject.get("minimalPoint"));
+        lw.setMinimalPoint(Long.parseLong(String.valueOf(jsonObject.get("minpoint"))));
 
         // set difficulty
         String difficultyString = (String)jsonObject.get("difficulty");
@@ -97,26 +99,33 @@ public class FileParser {
         lw.setDifficulty(difficultyEnum);
 
 
-        // set weight
-        lw.setWeight(Math.toIntExact((Long)jsonObject.get("weight")));
+//         set weight
+//        lw.setWeight(Math.toIntExact(Long.parseLong(String.valueOf(jsonObject.get("weight")))));
 
-        // set nationality
-        String countryString = (String)jsonObject.get("nationality");
-        Country countryEnum = Country.valueOf(countryString);
-        lw.setNationality(countryEnum);
+//        // set nationality
+//        String countryString = (String)jsonObject.get("nationality");
+//        Country countryEnum = Country.valueOf(countryString);
+//        lw.setNationality(countryEnum);
         //set author
+//         set location
         JSONObject authorObj = (JSONObject)jsonObject.get("author");
+                JSONObject locationObj = (JSONObject)authorObj.get("location");
+        //System.out.println(locationObj);
+//                lw.setLocation(new Location(
+//                        Math.toIntExact(Long.parseLong(String.valueOf(locationObj.get("x")))),
+//                        Long.parseLong(String.valueOf(locationObj.get("y"))),
+//                        (String)locationObj.get("name")
+//                ));
+
         lw.setAuthor(new Person(
-                (String)authorObj.get("name"), (double)authorObj.get("weight"),(Color)authorObj.get("eye color"),(HairColor) authorObj.get("hair color"),(Country) authorObj.get("nationality"),(Location) authorObj.get("location")
+                (String)authorObj.get("name"), Double.parseDouble(String.valueOf(authorObj.get("weight"))),Color.valueOf(String.valueOf(authorObj.get("eye color"))),HairColor.valueOf(String.valueOf(authorObj.get("hair color"))),Country.valueOf(String.valueOf(authorObj.get("nationality"))), new Location(
+                Integer.parseInt((String.valueOf(locationObj.get("x")))),
+                Long.parseLong(String.valueOf(locationObj.get("y"))),
+                (String)locationObj.get("name")
+        )
         ));
 
-        // set location
-        JSONObject locationObj = (JSONObject)jsonObject.get("location");
-        lw.setLocation(new Location(
-                Math.toIntExact((Long)locationObj.get("x")),
-                (long)locationObj.get("y"),
-                (String)locationObj.get("name")
-        ));
+
 
         return lw;
     }
