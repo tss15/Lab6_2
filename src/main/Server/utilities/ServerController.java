@@ -1,5 +1,7 @@
 package utilities;
 
+import commands.seriallizedCommands.SerializedSimplyCommand;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -40,8 +42,8 @@ import java.util.logging.Level;
                     ObjectInputStream in = new ObjectInputStream(receivedByteArray);
                     try {
                         Object object = in.readObject();
-/*                SerializedSimplyCommand receivedCommand = (SerializedSimplyCommand) object;
-                System.out.println(receivedCommand.getID());*/
+//                        SerializedSimplyCommand receivedCommand = (SerializedSimplyCommand) object;
+//                        System.out.println(receivedCommand.getID());
                         CommandDecoder commandDecoder = new CommandDecoder(serverSocket, receivedPacket);
                         commandDecoder.decode(object);
                     } catch (ParseException | ClassNotFoundException e) {
